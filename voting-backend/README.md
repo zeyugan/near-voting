@@ -6,6 +6,8 @@
   - npm run build
 3. deploy the contract
   - near deploy voterntupm.testnet ./build/hello_near.wasm
+4. test the contract
+  - near view voterntupm.testnet getAllPrompts
 
 
 
