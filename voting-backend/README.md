@@ -14,5 +14,6 @@
 # misc
 
 ### for the test account
+existing deployment: https://testnet.nearblocks.io/txns/H4zzZwLBBi9PXPJFt4XXmyUQTmwocS2gCwkxkvcSi27S
 ID: voterntupm.testnet
 verify foot apple consider rug wink second course wear rare broom digital
