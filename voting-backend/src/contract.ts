@@ -17,8 +17,6 @@ class VotingContract {
   voteArray = new UnorderedMap<number[]>("voteArray");
   userParticipation = new UnorderedMap<string[]>("user Participation ");
 
-  // Writing View Methods
-
   @view({})
   getUrl({ prompt, name }: { prompt: string; name: string }): string {
     near.log(prompt);
