@@ -10,6 +10,15 @@
   - near view voterntupm.testnet getAllPrompts
 
 
+# Frontend
+1. install dependencies
+  - npm install
+2. set env
+  - create a `.env` file in the root directory, and add the following line
+  - `CONTRACT_NAME=voterntupm.testnet`
+3. run the frontend
+  - parcel index.html --open
+
 
 # misc
 
