@@ -5,6 +5,9 @@ import { async } from "regenerator-runtime";
 let contractId = process.env.CONTRACT_NAME;
 console.log(contractId);
 
+/***
+ * Homepage
+ */
 const Home = (props) => {
   const [disableButton, changeDisableButton] = useState(false);
 

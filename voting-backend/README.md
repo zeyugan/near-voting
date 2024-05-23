@@ -19,6 +19,11 @@
 3. run the frontend
   - parcel index.html --open
 
+## TODO
+- [] admin and user access
+- [] fix UI display
+- [] loading spinner on blocking operations
+
 
 # misc
 

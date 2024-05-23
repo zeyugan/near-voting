@@ -11,12 +11,11 @@ import { Wallet } from './near-wallet';
 const CONTRACT_ADDRESS = process.env.CONTRACT_NAME;
 console.log(CONTRACT_ADDRESS);
 
-// When creating the wallet you can optionally ask to create an access key
-// Having the key enables to call non-payable methods without interrupting the user to sign
+// user wallet login
 const wallet = new Wallet({ createAccessKeyFor: CONTRACT_ADDRESS });
 console.log(wallet);
 const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
+const root = createRoot(container);
 
 // Setup on page load
 window.onload = async () => {
