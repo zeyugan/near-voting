@@ -20,9 +20,10 @@
   - parcel index.html --open
 
 ## TODO
-- [] admin and user access
+- [] user integrity
+- [] display candidate name in polling station
 - [] fix UI display
-- [] loading spinner on blocking operations
+- [x] loading spinner on blocking operations
 
 
 # misc
