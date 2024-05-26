@@ -17,6 +17,9 @@ class VotingContract {
   voteArray = new UnorderedMap<number[]>("voteArray");
   userParticipation = new UnorderedMap<string[]>("user Participation ");
 
+  // dummy public key for signature verification
+  publicKey = "dummy";
+
   @view({})
   getUrl({ prompt, name }: { prompt: string; name: string }): string {
     near.log(prompt);
@@ -93,10 +96,17 @@ class VotingContract {
   }
 
   @call({})
-  addVote({ prompt, index }: { prompt: string; index: number }) {
+  addVote({ prompt, index, signature }: { prompt: string; index: number; signature: string}) {
+
+    // verify signature
+    if (!this.verifySignature({ signature })) {
+      return false;
+    }
+
     let currentVotes = this.voteArray.get(prompt, { defaultValue: [0, 0] });
     currentVotes[index] = currentVotes[index] + 1;
     this.voteArray.set(prompt, currentVotes);
+    return true;
   }
 
   @call({})
@@ -104,5 +114,12 @@ class VotingContract {
     let currentArray = this.userParticipation.get(prompt, { defaultValue: [] });
     currentArray.includes(user) ? null : currentArray.push(user);
     this.userParticipation.set(prompt, currentArray);
+  }
+
+  // dummy util function to verify signature
+  // IRL should decrypt the signature using the public key and verify the message
+  @view({})
+  verifySignature({ signature }: { signature: string }): boolean {
+    return signature === this.publicKey;
   }
 }
