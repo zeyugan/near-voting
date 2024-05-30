@@ -1,7 +1,5 @@
-import { get } from "http";
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-// import LoadingCircles from "../assets/loadingcircles.svg";
+import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 
 const PollingStation = (props) => {
   const [candidate1URL, changeCandidate1Url] = useState(
@@ -10,11 +8,16 @@ const PollingStation = (props) => {
   const [candidate2URL, changeCandidate2Url] = useState(
     "https://cdn2.iconfinder.com/data/icons/material-line-thin/1024/option-256.png"
   );
-  const [showresults, changeResultsDisplay] = useState(false);
+  const [showResults, changeResultsDisplay] = useState(false);
   const [buttonStatus, changeButtonStatus] = useState(false);
   const [candidate1Votes, changeVote1] = useState(0);
   const [candidate2Votes, changeVote2] = useState(0);
+  const [candidate1Name, changeCandidate1Name] = useState("");
+  const [candidate2Name, changeCandidate2Name] = useState("");
   const [prompt, changePrompt] = useState("--");
+  const [showModal, setShowModal] = useState(false);
+  const [securityToken, setSecurityToken] = useState("");
+  const [selectedCandidateIndex, setSelectedCandidateIndex] = useState(null);
 
   const contractId = process.env.CONTRACT_NAME;
 
@@ -22,7 +25,6 @@ const PollingStation = (props) => {
     const getInfo = async () => {
       let x = "localStorage";
       console.log("the prompt is", localStorage.prompt);
-      // vote count stuff
 
       let promptName = localStorage.prompt;
 
@@ -34,7 +36,6 @@ const PollingStation = (props) => {
       changeVote1(voteCount[0]);
       changeVote2(voteCount[1]);
 
-      // // image stuff
       console.log(
         "url is ",
         await props.viewMethod("getUrl", {
@@ -55,9 +56,10 @@ const PollingStation = (props) => {
         })
       );
 
-      changePrompt(localStorage.getItem("prompt"));
+      changeCandidate1Name(localStorage.getItem("Candidate1"));
+      changeCandidate2Name(localStorage.getItem("Candidate2"));
 
-      // // vote checking stuff
+      changePrompt(localStorage.getItem("prompt"));
 
       let didUserVote = await props.viewMethod("didParticipate", {
         prompt: localStorage.getItem("prompt"),
@@ -70,14 +72,24 @@ const PollingStation = (props) => {
     };
 
     getInfo();
-  }, [showresults]);
+  }, [showResults]);
 
-  const addVote = async (index) => {
+  const verifyToken = (token) => {
+    // Dummy token verification logic
+    return token === "valid-token";
+  };
+
+  const handleVote = async () => {
+    if (!verifyToken(securityToken)) {
+      alert("Invalid security token. Please try again.");
+      return;
+    }
+
     changeButtonStatus(true);
     let receipt = await props
       .callMethod("addVote", {
         prompt: localStorage.getItem("prompt"),
-        index: index,
+        index: selectedCandidateIndex,
       })
       .then(async () => {
         console.log("recording a prompt", localStorage.getItem("prompt"));
@@ -99,16 +111,27 @@ const PollingStation = (props) => {
         console.log(voteCount);
       })
       .then(() => {
-        alert("thanks for voting!");
+        alert("Thanks for voting!");
       });
 
+    console.log(receipt);
+
     changeResultsDisplay(true);
+    setShowModal(false);
+  };
+
+  const addVote = (index) => {
+    setSelectedCandidateIndex(index);
+    setShowModal(true);
   };
 
   return (
     <Container>
       <Row>
-        <Col className='jutify-content-center d-flex' style={{ width: "20vw" }}>
+        <Col
+          className="justify-content-center d-flex"
+          style={{ width: "20vw" }}
+        >
           <Container>
             <Row style={{ marginTop: "5vh", backgroundColor: "#c4c4c4" }}>
               <div
@@ -127,27 +150,20 @@ const PollingStation = (props) => {
                 ></img>
               </div>
             </Row>
-            {showresults ? (
-              <Row
-                className='justify-content-center d-flex'
-                style={{ marginTop: "5vh" }}
+            <Row className="justify-content-center d-flex">
+              <div
+                style={{
+                  fontSize: "1.5vw",
+                  fontWeight: "bold",
+                  marginTop: "1vh",
+                }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    fontSize: "8vw",
-                    padding: "10px",
-                    backgroundColor: "#c4c4c4",
-                  }}
-                >
-                  {candidate1Votes}
-                </div>
-              </Row>
-            ) : null}
+                {candidate1Name}
+              </div>
+            </Row>
             <Row
               style={{ marginTop: "5vh" }}
-              className='justify-content-center d-flex'
+              className="justify-content-center d-flex"
             >
               <Button disabled={buttonStatus} onClick={() => addVote(0)}>
                 Vote
@@ -156,7 +172,7 @@ const PollingStation = (props) => {
           </Container>
         </Col>
         <Col
-          className='justify-content-center d-flex align-items-center'
+          className="justify-content-center d-flex align-items-center"
           style={{ width: "10vw" }}
         >
           <div
@@ -173,7 +189,10 @@ const PollingStation = (props) => {
             {prompt}
           </div>
         </Col>
-        <Col className='jutify-content-center d-flex' style={{ width: "20vw" }}>
+        <Col
+          className="justify-content-center d-flex"
+          style={{ width: "20vw" }}
+        >
           <Container>
             <Row style={{ marginTop: "5vh", backgroundColor: "#c4c4c4" }}>
               <div
@@ -192,27 +211,20 @@ const PollingStation = (props) => {
                 ></img>
               </div>
             </Row>
-            {showresults ? (
-              <Row
-                className='justify-content-center d-flex'
-                style={{ marginTop: "5vh" }}
+            <Row className="justify-content-center d-flex">
+              <div
+                style={{
+                  fontSize: "1.5vw",
+                  fontWeight: "bold",
+                  marginTop: "1vh",
+                }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    fontSize: "8vw",
-                    padding: "10px",
-                    backgroundColor: "#c4c4c4",
-                  }}
-                >
-                  {candidate2Votes}
-                </div>
-              </Row>
-            ) : null}
+                {candidate2Name}
+              </div>
+            </Row>
             <Row
               style={{ marginTop: "5vh" }}
-              className='justify-content-center d-flex'
+              className="justify-content-center d-flex"
             >
               <Button disabled={buttonStatus} onClick={() => addVote(1)}>
                 Vote
@@ -221,6 +233,33 @@ const PollingStation = (props) => {
           </Container>
         </Col>
       </Row>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Your Vote</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formSecurityToken">
+              <Form.Label>Please enter your security token</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter security token"
+                value={securityToken}
+                onChange={(e) => setSecurityToken(e.target.value)}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            No
+          </Button>
+          <Button variant="primary" onClick={handleVote}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
