@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
-import candidate1 from '../assets/candidate1.png';
-import candidate2 from '../assets/candidate2.png';
-import title from '../assets/Title.png'
+import candidate1 from "../assets/candidate1.png";
+import candidate2 from "../assets/candidate2.png";
+import title from "../assets/Title.png";
 
 const PollingStation = (props) => {
   const [candidate1URL, changeCandidate1Url] = useState(
@@ -145,13 +145,13 @@ const PollingStation = (props) => {
                 }}
               >
                 <img
-                    src={candidate1URL ? candidate1URL : candidate1}
-                    alt="Logo"
-                    style={{
-                      height: "40vh",
-                      width: "20vw",
-                      borderRadius: '50%'
-                    }}
+                  src={candidate1URL ? candidate1URL : candidate1}
+                  alt="Logo"
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    borderRadius: "50%",
+                  }}
                 ></img>
               </div>
             </Row>
@@ -161,6 +161,11 @@ const PollingStation = (props) => {
                   fontSize: "1.5vw",
                   fontWeight: "bold",
                   marginTop: "1vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%", // Ensure the div takes up the full width of its container
+                  textAlign: "center", // Center the text within the div
                 }}
               >
                 {candidate1Name}
@@ -199,20 +204,45 @@ const PollingStation = (props) => {
           style={{ width: "10vw" }}
         >
           <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#c0",
-                height: "20vh",
-                padding: "2vw",
-                textAlign: "center",
-              }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#c0",
+              height: "20vh",
+              padding: "2vw",
+              textAlign: "center",
+            }}
           >
-            <div style={{ marginBottom: "1vh",fontSize: "2rem",fontFamily: "'Arial Black', 'Arial Bold', 'Gadget', 'sans-serif'", }}>Prompt Title:</div>
-            <div style={{ fontSize: "1.5rem",fontFamily: "'Arial Rounded MT Bold', 'Helvetica Rounded', 'Arial', sans-serif", }}>{prompt}</div>
-            <img src={title} alt="描述" style={{ marginTop: "0vh",height: "40vh", width: "20vw", }} />
+            <div
+              style={{
+                marginBottom: "1vh",
+                fontSize: "2rem",
+                fontFamily:
+                  "'Arial Black', 'Arial Bold', 'Gadget', 'sans-serif'",
+              }}
+            >
+              Prompt Title:
+            </div>
+            <div
+              style={{
+                fontSize: "1.5rem",
+                fontFamily:
+                  "'Arial Rounded MT Bold', 'Helvetica Rounded', 'Arial', sans-serif",
+              }}
+            >
+              {prompt}
+            </div>
+            <img
+              src={title}
+              alt="描述"
+              style={{
+                width: "128px",
+                height: "128px",
+                borderRadius: "50%",
+              }}
+            />
           </div>
         </Col>
         <Col
@@ -229,13 +259,13 @@ const PollingStation = (props) => {
                 }}
               >
                 <img
-                    src={candidate2URL ? candidate2URL : candidate2}
-                    alt="Logo"
-                    style={{
-                      height: "40vh",
-                      width: "20vw",
-                      borderRadius: '50%'
-                    }}
+                  src={candidate2URL ? candidate2URL : candidate2}
+                  alt="Logo"
+                  style={{
+                    width: "256px",
+                    height: "256px",
+                    borderRadius: "50%",
+                  }}
                 ></img>
               </div>
             </Row>
@@ -245,6 +275,11 @@ const PollingStation = (props) => {
                   fontSize: "1.5vw",
                   fontWeight: "bold",
                   marginTop: "1vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%", // Ensure the div takes up the full width of its container
+                  textAlign: "center", // Center the text within the div
                 }}
               >
                 {candidate2Name}
