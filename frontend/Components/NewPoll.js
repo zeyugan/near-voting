@@ -52,7 +52,7 @@ const NewPoll = (props) => {
   const returnToHome = () => {
     if (displayMessage) {
       return (
-        <Row className='justify-content-center d-flex'>
+        <Row className="justify-content-center d-flex">
           <Card style={{ width: "20vw" }}>Return to Home Page</Card>
         </Row>
       );
@@ -67,11 +67,11 @@ const NewPoll = (props) => {
           <Card.Body>
             <Card.Title>Voting Prompt</Card.Title>
             <Form>
-              <Form.Group className='mb-3'>
+              <Form.Group className="mb-3">
                 <Form.Label>Prompt</Form.Label>
                 <Form.Control
                   ref={promptRef}
-                  placeholder='Add Prompt'
+                  placeholder="Add Prompt"
                 ></Form.Control>
               </Form.Group>
             </Form>
@@ -79,55 +79,55 @@ const NewPoll = (props) => {
         </Card>
       </Row>
       <Row style={{ marginTop: "5vh" }}>
-        <Col className='justify-content-center d-flex'>
+        <Col className="justify-content-center d-flex">
           <Card style={{ width: "18rem" }}>
             <Card.Body>
               <Card.Title>Candidate 1 Information</Card.Title>
-              <Card.Subtitle className='mb-2 text-muted'>
+              <Card.Subtitle className="mb-2 text-muted">
                 Enter your Information For your First Candidate
               </Card.Subtitle>
               <Form>
-                <Form.Group className='mb-3'>
+                <Form.Group className="mb-3">
                   <Form.Label>Candidiate 1 Name</Form.Label>
                   <Form.Control
                     ref={candidateName1}
-                    placeholder='Enter Candidate Name'
+                    placeholder="Enter Candidate Name"
                   ></Form.Control>
                 </Form.Group>
 
-                <Form.Group className='mb-3'>
+                <Form.Group className="mb-3">
                   <Form.Label>Candidate 1 Image URL</Form.Label>
                   <Form.Control
                     ref={candidateName1URL}
-                    placeholder='enter Image URL'
+                    placeholder="enter Image URL"
                   ></Form.Control>
                 </Form.Group>
               </Form>
             </Card.Body>
           </Card>
         </Col>
-        <Col className='justify-content-center d-flex'>
+        <Col className="justify-content-center d-flex">
           <Card style={{ width: "18rem" }}>
             {" "}
             <Card.Body>
               <Card.Title>Candidate 2 Information</Card.Title>
-              <Card.Subtitle className='mb-2 text-muted'>
+              <Card.Subtitle className="mb-2 text-muted">
                 Enter your Information For your First Candidate
               </Card.Subtitle>
               <Form>
-                <Form.Group className='mb-3'>
+                <Form.Group className="mb-3">
                   <Form.Label>Candidiate 2 Name</Form.Label>
                   <Form.Control
                     ref={candidateName2}
-                    placeholder='Enter Candidate Name'
+                    placeholder="Enter Candidate Name"
                   ></Form.Control>
                 </Form.Group>
 
-                <Form.Group className='mb-3'>
+                <Form.Group className="mb-3">
                   <Form.Label>Candidate 2 Image URL</Form.Label>
                   <Form.Control
                     ref={candidateName2URL}
-                    placeholder='enter Image URL'
+                    placeholder="enter Image URL"
                   ></Form.Control>
                 </Form.Group>
               </Form>
@@ -140,7 +140,7 @@ const NewPoll = (props) => {
         <Button
           disabled={disableButton}
           onClick={updatePolls}
-          variant='primary'
+          variant="primary"
         >
           Submit
         </Button>

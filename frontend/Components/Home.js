@@ -72,7 +72,7 @@ const Home = (props) => {
         </tbody>
       </Table>
       {
-        <Row className='justify-content-center d-flex'>
+        <Row className="justify-content-center d-flex">
           <Card style={{ width: "20vw", height: "10vh" }}>
             No Prompts to show
           </Card>
