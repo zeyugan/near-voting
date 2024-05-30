@@ -161,6 +161,24 @@ const PollingStation = (props) => {
                 {candidate1Name}
               </div>
             </Row>
+            {showResults ? (
+              <Row
+                className="justify-content-center d-flex"
+                style={{ marginTop: "5vh" }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "8vw",
+                    padding: "10px",
+                    backgroundColor: "#c4c4c4",
+                  }}
+                >
+                  {candidate1Votes}
+                </div>
+              </Row>
+            ) : null}
             <Row
               style={{ marginTop: "5vh" }}
               className="justify-content-center d-flex"
@@ -222,6 +240,24 @@ const PollingStation = (props) => {
                 {candidate2Name}
               </div>
             </Row>
+            {showResults ? (
+              <Row
+                className="justify-content-center d-flex"
+                style={{ marginTop: "5vh" }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "8vw",
+                    padding: "10px",
+                    backgroundColor: "#c4c4c4",
+                  }}
+                >
+                  {candidate2Votes}
+                </div>
+              </Row>
+            ) : null}
             <Row
               style={{ marginTop: "5vh" }}
               className="justify-content-center d-flex"
