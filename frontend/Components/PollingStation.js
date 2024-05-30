@@ -177,7 +177,7 @@ const PollingStation = (props) => {
                     justifyContent: "center",
                     fontSize: "8vw",
                     padding: "10px",
-                    backgroundColor: "#c4c4c4",
+                    backgroundColor: "#0",
                   }}
                 >
                   {candidate1Votes}
@@ -220,7 +220,7 @@ const PollingStation = (props) => {
           style={{ width: "20vw" }}
         >
           <Container>
-            <Row style={{ marginTop: "5vh", backgroundColor: "#c4c4c4" }}>
+            <Row style={{ marginTop: "5vh", backgroundColor: "#0" }}>
               <div
                 style={{
                   display: "flex",

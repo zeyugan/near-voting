@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import logo from './assets/logo.png';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -139,9 +140,13 @@ export default function App({ isSignedIn, contractId, wallet }) {
         <Container>
           <Navbar.Brand href="/">
             <img
-              src={"https://i.imgur.com/nm36X1z.png"}
-              alt="Brand Logo"
-              style={{ width: "128px", height: "128px" }}
+                src={logo}
+                alt="Logo"
+                style={{
+                  width: '128px',
+                  height: '128px',
+                  borderRadius: '50%'
+                }}
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
